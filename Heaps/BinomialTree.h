@@ -19,10 +19,11 @@ public:
     string key;
     std::list<BinomialTree*> *children;
 
-    explicit BinomialTree(int value) {
-        this->value = value;
-        this->order = 0;
-        this->parent = nullptr;
+    explicit BinomialTree(int value):
+        value {value},
+        order {0},
+        parent {nullptr}
+    {
         string uniqueKey;
         for( int i = 0; i < KEY_LENGTH; i++) {
             uniqueKey.append(1,getRandom(65,90));
@@ -30,7 +31,8 @@ public:
         this->key = uniqueKey;
         this->keyMap = new unordered_map<string, BinomialTree*>({{uniqueKey, this}});
         this->children = new std::list<BinomialTree*>();
-    }
+        }
+
 
     vector<vector<char>> getMatrixRepresentation( bool shortVersion = true) {
         vector<bool> lc;
